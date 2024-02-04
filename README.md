@@ -1,36 +1,9 @@
-# TODbox (Tiny Object Detection Box)
-This is a repository of the official implementation of the following paper: 
-* [[Paper]](https://www.sciencedirect.com/science/article/pii/S0924271622001599?dgcid=author)[[Code]](mmdet-nwdrka) Detecting tiny Objects in aerial images: A normalized Wasserstein distance and A new benchmark ([ISPRS J P & RS](https://www.sciencedirect.com/journal/isprs-journal-of-photogrammetry-and-remote-sensing), 2022)
-* [[Paper]](https://openaccess.thecvf.com/content/CVPR2021W/EarthVision/html/Xu_Dot_Distance_for_Tiny_Object_Detection_in_Aerial_Images_CVPRW_2021_paper.html)[[Code]](mmdet-nwdrka) Dot distance for tiny object detection in aerial images ([CVPRW](http://www.classic.grss-ieee.org/earthvision2021/), 2021)
+# A DeNoising FPN with Transformer R-CNN for Tiny Object Detection
+
+![method](./figures/dnfpn.png)
 
 
-
-## Introduction
-The Normalized Wasserstein Distance and the RanKing-based Assigning strategy (NWD-RKA) for tiny object detection. 
-![demo image](figures/nwdrka.PNG)
-
-A comparison between AI-TOD and AI-TOD-v2.
-![demo image](figures/fps2.gif)
-
-## Supported Data
-- [x] [AI-TOD](https://github.com/jwwangchn/AI-TOD)
-- [x] [AI-TOD-v2](https://drive.google.com/drive/folders/1Er14atDO1cBraBD4DSFODZV1x7NHO_PY?usp=sharing)
-
-Notes: The images of the **AI-TOD-v2** are the same of the **AI-TOD**. In this stage, we only release the train, val annotations of the **AI-TOD-v2**, the test annotations will be used to hold further competitions.
-
-## Supported Methods
-Supported baselines for tiny object detection:
-- [x] [Baselines](mmdet-nwdrka/configs_nwdrka/baseline)
-
-Supported horizontal tiny object detection methods:
-- [x] [DotD](mmdet-nwdrka/configs_nwdrka/nwd_rka) 
-- [x] [NWD-RKA](mmdet-nwdrka/configs_nwdrka/nwd_rka)
-- [ ] [RFLA](https://github.com/Chasel-Tsui/mmdet-rfla) 
-
-Supported rotated tiny object detection methods:
-- [ ] Stay tuned, coming soon!
-
-
+A PyTorch implementation and pretrained models for DNTR (DeNoising Transformer R-CNN). We present DN-FPN, a plug-in that suppresses noise generated during the fusion of FPNs. In addition, we renalvate the standard R-CNN to consist of a transformer structure, namely Trans R-CNN.(base)
 ## Installation and Get Started
 
 Required environments:
@@ -43,9 +16,9 @@ Required environments:
 * [cocoapi-aitod](https://github.com/jwwangchn/cocoapi-aitod)
 
 
-Install TODbox:
+Installation:
 
-Note that our TODbox is based on the [MMDetection 2.24.1](https://github.com/open-mmlab/mmdetection). Assume that your environment has satisfied the above requirements, please follow the following steps for installation.
+This implementation is based on [MMDetection 2.24.1](https://github.com/open-mmlab/mmdetection). Assume that your environment has satisfied the above requirements, please follow the following steps for installation.
 
 ```shell script
 git clone https://github.com/Chasel-Tsui/mmdet-aitod.git
@@ -54,33 +27,38 @@ pip install -r requirements/build.txt
 python setup.py develop
 ```
 
-## Citation
+Get Started with single GPU
 
-If you use this repo in your research, please consider citing these papers.
+Training DNTR, for example :
 
 ```
-@inproceedings{xu2021dot,
-  title={Dot Distance for Tiny Object Detection in Aerial Images},
-  author={Xu, Chang and Wang, Jinwang and Yang, Wen and Yu, Lei},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
-  pages={1192--1201},
-  year={2021}
-}
-
-@inproceedings{NWDRKA_2022_ISPRS,
-    title={Detecting Tiny Objects in Aerial Images: A Normalized Wasserstein Distance and A New Benchmark},
-    author={Xu, Chang and Wang, Jinwang and Yang, Wen and Yu, Huai and Yu, Lei and Xia, Gui-Song},
-    booktitle={ISPRS Journal of Photogrammetry and Remote Sensing},
-    volume={190},
-    pages={79--93},
-    year={2022},
-}
+python tools/train.py configs/dntr/aitod_dntr_r50_1x.py
 ```
 
-## References
-* [AI-TOD](https://github.com/jwwangchn/AI-TOD)
-* [MMDetection](https://github.com/open-mmlab/mmdetection)
-* [DOTA](https://captain-whu.github.io/DOTA/index.html)
+Testing DNTR, for example :
+```
+python tools/test.py configs/dntr/aitod_dntr_r50_1x.py
+```
+
+## Performance
+Table 1. **Training Set:** AI-TOD trainval set, **Validation Set:** AI-TOD test set, 36 epochs, where FRCN denotes Faster R-CNN.
+|Method | Backbone | mAP | AP<sub>50</sub> | AP<sub>75</sub> |AP<sub>vt</sub> | AP<sub>t</sub>  | AP<sub>s</sub>  | AP<sub>m</sub> | AP<sub>m</sub> |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---: |:---: |:---: |:---: |
+FRCN | R-50 | 11.1 | 26.3 | 7.6 | 0.0 | 7.2 | 23.3 | 33.6 | 22.9 |
+FRCN w/ Ours | R-50 | 12.6 | 28.4 | 9.4 | 0.0 | 9.1 | 25.6 | 35.0 | 24.1 |
+ATSS | R-50 | 12.8 | 30.6 | 8.5 | 1.9 | 11.6 | 19.5 | 29.2 | 25.8 |
+ATSS w/ Ours | R-50 | 17.9 | 41.0 | 12.9 | 3.7 | 16.4 | 25.3 | 35.0 | 33.2 |
+DR w/ NWD-RKA | R-50 | 23.4 | 53.5 | 16.8 | 8.7 | 23.8 | 28.5 | 36.0 | 6.9 |
+DR w/ Ours (DNTR) | R-50 | **26.2** | **56.7** | **20.2** | **12.8** | **26.4** | **31.0** | **37.0** | **7.6** |
 
 
 
+Table 2.  **Training Set:** Visdrone train set, **Validation Set:** Visdrone val set, 12 epochs,
+|Method | Backbone |AP| AP<sub>50</sub> | AP<sub>75</sub> |
+|:---:|:---:|:---:|:---:|:---:|
+DNTR | R-50 | 34.4 | 57.9 | 35.3 |
+UFPMP w/o DN-FPN| R-50 | 36.6 | 62.4 | 36.7 |
+UFPMP w/ DN-FPN | R-50 | **37.8** | **62.7** | **38.6** |
+
+
+Please refer to the paper for detailed performance on the AI-TOD and VisDrone2019
