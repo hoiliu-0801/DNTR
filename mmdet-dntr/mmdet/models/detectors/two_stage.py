@@ -280,20 +280,16 @@ class TwoStageDetector(BaseDetector):
         # print(file_)
         # exit()
         if self.with_neck:
-            # print("here")
             x = self.neck(x)
-            for id, feat in enumerate(x):
-                # print(feat.shape) # torch.Size([2, 256, 144, 256])
-                # heatmap = feat[:,0,:,:]*0
-                # 可视化FPN产生的特征
-                if id == 0:
-                    # if str(filename) in file_:
-                    # for i in range(feat.shape[1]):
-                    #     heatmap+= feat[:, i, :, :]
-                    feat = feat.squeeze(0).cpu().detach().numpy()[0]
-                    feat = cv2.resize(feat, (600, 600))
-                    save_path= "/mnt/data0/Garmin/DNTR/mmdet-dntr/tools/vis/"
-                    plt.imsave(save_path+filename, feat) #
+            # for id, feat in enumerate(x):
+            #     # print(feat.shape) # torch.Size([2, 256, 144, 256])
+            #     # heatmap = feat[:,0,:,:]*0
+            #     # 可视化FPN产生的特征
+            #     if id == 0:
+            #         feat = feat.squeeze(0).cpu().detach().numpy()[0]
+            #         feat = cv2.resize(feat, (600, 600))
+            #         save_path= "/mnt/data0/Garmin/DNTR/mmdet-dntr/tools/vis/"
+            #         plt.imsave(save_path+filename, feat) #
             # from tools.feature_visualization import draw_feature_map
             # draw_feature_map(x, filename)
         # exit()
