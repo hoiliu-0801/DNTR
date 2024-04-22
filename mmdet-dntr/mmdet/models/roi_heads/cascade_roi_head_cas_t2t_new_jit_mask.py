@@ -281,7 +281,7 @@ class Token_pair_block(nn.Module):
         idx = gpu_pair(token_compare,index,B,N)
         # end = time.time()
         # print('time:',end-start)
-        idx = torch.from_numpy(idx).to(torch.device('cuda:0'))
+        idx = torch.from_numpy(idx).to(torch.device('cuda'))
         idx = idx.unsqueeze(-1).expand(-1, -1, C)
 
         cat_token = torch.gather(general_token,dim=1,index=idx)
@@ -389,8 +389,8 @@ class Cascade_t2t_new_jit_mask_RoIHead(BaseRoIHead, BBoxTestMixin, MaskTestMixin
         self.in_chans = 256
         self.token_dim = 100
         self.embed_dim = 128
-        self.bbox_token = [nn.Parameter(torch.zeros(1, self.in_chans * 3 * 3)).to(torch.device('cuda:0')) for _ in range(self.num_stages)]
-        self.cls_token = [nn.Parameter(torch.zeros(1, self.in_chans * 3 * 3)).to(torch.device('cuda:0')) for _ in range(self.num_stages)]
+        self.bbox_token = [nn.Parameter(torch.zeros(1, self.in_chans * 3 * 3)).to(torch.device('cuda')) for _ in range(self.num_stages)]
+        self.cls_token = [nn.Parameter(torch.zeros(1, self.in_chans * 3 * 3)).to(torch.device('cuda')) for _ in range(self.num_stages)]
         self.token_to_token = ModuleList([T2T_module(
                                 img_size=7, tokens_type='transformer', in_chans=self.in_chans, embed_dim=self.embed_dim, token_dim=self.token_dim, mask=True) for _ in range(self.num_stages)])
         self.t2t_bbox_head = ModuleList([nn.Linear(9*128, 4) for _ in range(self.num_stages)])

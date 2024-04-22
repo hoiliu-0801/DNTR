@@ -62,7 +62,7 @@ model = dict(
             type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
         loss_bbox=dict(type='SmoothL1Loss', beta=1.0 / 9.0, loss_weight=1.0)),
     roi_head=dict(
-        type='Cascade_t2t_new_jit_mask_RoIHead',
+        type='CascadeRoIHead',
         num_stages=3,
         stage_loss_weights=[1, 0.5, 0.25],
         bbox_roi_extractor=dict(
@@ -224,7 +224,7 @@ runner = dict(type='EpochBasedRunner', max_epochs=48)
 
 evaluation = dict(interval=48, metric='bbox')
 
-load_from = "/mnt/data0/Garmin/DNTR/mmdet-dntr/work_dirs/pretrain/CL_26.5.pth"
+load_from = None
 # load_from = "/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/pretrain/base_24.pth"
 # load_from = "/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/RS_cl_two_stage/e12_mAP251.pth"
 

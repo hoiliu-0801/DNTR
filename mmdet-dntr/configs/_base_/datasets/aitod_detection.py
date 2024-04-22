@@ -1,6 +1,6 @@
 dataset_type = 'AITODDataset'
 data_root = '/mnt/data0/Garmin/datasets/ai-tod/'
-#find_unused_parameters = True
+find_unused_parameters = True
 # data_root = 'data/AI-TOD/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -35,18 +35,18 @@ data = dict(
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/aitod_trainval_v1.json',
-        img_prefix=data_root + 'train/images/',
+        img_prefix=data_root + 'trainval/images/train2024/',
         pipeline=train_pipeline,
         ),
     val=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/aitod_test_v1.json',
-        img_prefix=data_root + 'test/images/',
+        img_prefix=data_root + 'test/images/train2024/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'annotations/aitod_test_v1.json',
-        img_prefix=data_root + 'test/images/',
+        img_prefix=data_root + 'test/images/train2024/',
         pipeline=test_pipeline))
 # evaluation = dict(interval=12, metric='bbox')
 # data = dict(

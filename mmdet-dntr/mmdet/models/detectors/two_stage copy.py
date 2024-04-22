@@ -18,13 +18,13 @@ class Encoder(nn.Module):
         self.E = nn.Sequential(
             nn.Conv2d(256, 256, kernel_size=3, stride=2, padding=1),
             nn.BatchNorm2d(256),
-            # nn.LeakyReLU(0.1, True),
+            nn.LeakyReLU(0.1, True),
             # nn.Conv2d(256, 512, kernel_size=3, stride=2, padding=1),
             # nn.BatchNorm2d(512),
             # nn.LeakyReLU(0.1, True),
             # nn.Conv2d(512, 1024, kernel_size=3, stride=2, padding=1),
             # nn.BatchNorm2d(1024),
-            nn.LeakyReLU(0.1, True),
+            # nn.LeakyReLU(0.1, True),
             nn.AdaptiveAvgPool2d(1),
         )
         self.mlp = nn.Sequential(

@@ -219,7 +219,7 @@ class Cascade_t2t_top4_new_RoIHead(BaseRoIHead, BBoxTestMixin, MaskTestMixin):
         self.token_to_token = ModuleList([T2T_module(
                                 img_size=7, tokens_type='performer', in_chans=self.in_chans, embed_dim=self.embed_dim, token_dim=self.token_dim) for _ in range(self.num_stages)])
         self.t2t_bbox_head = ModuleList([nn.Linear(evit_token*128, 4) for _ in range(self.num_stages)])
-        
+
         norm_layer = partial(nn.LayerNorm, eps=1e-6)
         self.norm = norm_layer(self.embed_dim)
 
