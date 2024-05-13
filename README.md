@@ -21,8 +21,8 @@ Installation:
 This implementation is based on [MMDetection 2.24.1](https://github.com/open-mmlab/mmdetection). Assume that your environment has satisfied the above requirements, please follow the following steps for installation.
 
 ```shell script
-git clone https://github.com/Chasel-Tsui/mmdet-aitod.git
-cd mmdet-nwdrka
+git clone https://github.com/hoiliu-0801/DNTR.git
+cd dntr
 pip install -r requirements/build.txt
 python setup.py develop
 ```
