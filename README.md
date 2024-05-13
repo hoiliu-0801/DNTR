@@ -60,5 +60,12 @@ DNTR | R-50 | 34.4 | 57.9 | 35.3 |
 UFPMP w/o DN-FPN| R-50 | 36.6 | 62.4 | 36.7 |
 UFPMP w/ DN-FPN | R-50 | **37.8** | **62.7** | **38.6** |
 
-
-Please refer to the paper for detailed performance on the AI-TOD and VisDrone2019
+## Citation
+@ARTICLE{10518058,
+  author={Liu, Hou-I and Tseng, Yu-Wen and Chang, Kai-Cheng and Wang, Pin-Jyun and Shuai, Hong-Han and Cheng, Wen-Huang},
+  journal={IEEE Transactions on Geoscience and Remote Sensing}, 
+  title={A DeNoising FPN with Transformer R-CNN for Tiny Object Detection}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={1-1}}
