@@ -32,12 +32,12 @@ Get Started with single GPU
 Training DNTR, for example :
 
 ```
-python tools/train.py configs/dntr/aitod_dntr_r50_1x.py
+python tools/train.py configs/dntr/aitod_DNTR_mask.py.py
 ```
 
 Testing DNTR, for example :
 ```
-python tools/test.py configs/dntr/aitod_dntr_r50_1x.py
+python tools/test.py configs/dntr/aitod_DNTR_mask.py.py
 ```
 
 ## Performance
