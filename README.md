@@ -1,6 +1,6 @@
 # A DeNoising FPN with Transformer R-CNN for Tiny Object Detection
 
-![method](./dnfpn.pdf)
+![method](./dnfpn_v2.pdf)
 
 
 A PyTorch implementation and pretrained models for DNTR (DeNoising Transformer R-CNN). We present DN-FPN, a plug-in that suppresses noise generated during the fusion of FPNs. In addition, we renalvate the standard R-CNN to consist of a transformer structure, namely Trans R-CNN.(base)
