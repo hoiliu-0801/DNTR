@@ -22,7 +22,7 @@ This implementation is based on [MMDetection 2.24.1](https://github.com/open-mml
 
 ```shell script
 git clone https://github.com/hoiliu-0801/DNTR.git
-cd dntr
+cd DNTR
 pip install -r requirements/build.txt
 python setup.py develop
 ```
