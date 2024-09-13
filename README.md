@@ -23,21 +23,32 @@ This implementation is based on [MMDetection 2.24.1](https://github.com/open-mml
 ```shell script
 git clone https://github.com/hoiliu-0801/DNTR.git
 cd DNTR/mmdet-dntr
+# Install pytorch
+conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=11.0 -c pytorch
 pip install -r requirements/build.txt
 python setup.py develop
+# Install cocoapi
+pip install pycocotools
+# Install aitodcocoapi
+pip install cython==0.29.36
+pip install "git+https://github.com/jwwangchn/cocoapi-aitod.git#subdirectory=aitodpycocotools"
+#Install mmcv
+pip install mmcv==2.0.0rc4 -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7/index.html
 ```
+
+
 
 Get Started with single GPU
 
 Training DNTR, for example :
 
 ```
-python tools/train.py configs/dntr/aitod_DNTR_mask.py.py
+python tools/train.py configs/aitod-dntr/aitod_DNTR_mask.py
 ```
 
 Testing DNTR, for example :
 ```
-python tools/test.py configs/dntr/aitod_DNTR_mask.py.py
+python tools/test.py configs/aitod-dntr/aitod_DNTR_mask.py
 ```
 
 ## Performance
