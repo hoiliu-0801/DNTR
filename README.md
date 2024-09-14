@@ -25,7 +25,9 @@ git clone https://github.com/hoiliu-0801/DNTR.git
 cd DNTR/mmdet-dntr
 # Install pytorch
 conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=11.0 -c pytorch
+# Required packages
 pip install -r requirements/build.txt
+pip install yapf==0.40.0
 python setup.py develop
 # Install cocoapi
 pip install pycocotools
