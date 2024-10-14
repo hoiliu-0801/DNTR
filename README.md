@@ -28,6 +28,9 @@ conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=11
 # Required packages
 pip install -r requirements/build.txt
 pip install yapf==0.40.0
+pip install numbda
+pip install timm
+pip install torchprofile
 python setup.py develop
 # Install cocoapi
 pip install pycocotools
@@ -35,7 +38,8 @@ pip install pycocotools
 pip install cython==0.29.36
 pip install "git+https://github.com/jwwangchn/cocoapi-aitod.git#subdirectory=aitodpycocotools"
 #Install mmcv
-pip install mmcv==2.0.0rc4 -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7/index.html
+#pip install mmcv==2.0.0rc4 -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7/index.html
+mim install mmcv-full==1.6.0
 ```
 
 
@@ -69,6 +73,11 @@ Table 2.  **Training Set:** Visdrone train set, **Validation Set:** Visdrone val
 DNTR | R-50 | 34.4 | 57.9 | 35.3 |
 UFPMP w/o DN-FPN| R-50 | 36.6 | 62.4 | 36.7 |
 UFPMP w/ DN-FPN | R-50 | **37.8** | **62.7** | **38.6** |
+
+## Note
+If you want to run other baseline method, please replace /mmdet/models/detectors/two_stage.py with mmdet/models/detectors/two_stage.py
+For example: 
+Faster R-CNN: python tools/train.py configs/aitod-dntr/aitod_faster_r50_dntr_1x.py 
 
 ## Citation
 @ARTICLE{10518058,
