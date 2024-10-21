@@ -1,5 +1,5 @@
 dataset_type = 'AITODDataset'
-data_root = '/mnt/data0/Garmin/datasets/ai-tod/'
+data_root = '/home/hoiliu/Desktop/Datasets/aitod/'
 find_unused_parameters = True
 # data_root = 'data/AI-TOD/'
 img_norm_cfg = dict(
@@ -34,21 +34,20 @@ data = dict(
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/aitod_trainval_v1.json',
-        img_prefix=data_root + 'trainval/images/train2024/',
+        ann_file=data_root + 'annotations/aitod_trainval_v1_1.0.json',
+        img_prefix=data_root + 'images/trainval/',
         pipeline=train_pipeline,
         ),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/aitod_test_v1.json',
-        img_prefix=data_root + 'test/images/train2024/',
+        ann_file=data_root + 'annotations/aitod_val.json',
+        img_prefix=data_root + 'images/val/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/aitod_test_v1.json',
-        img_prefix=data_root + 'test/images/train2024/',
+        ann_file=data_root + 'annotations/aitod_test_v1_1.0.json',
+        img_prefix=data_root + 'images/test/',
         pipeline=test_pipeline))
-# evaluation = dict(interval=12, metric='bbox')
 # data = dict(
 #     samples_per_gpu=2,
 #     workers_per_gpu=2,

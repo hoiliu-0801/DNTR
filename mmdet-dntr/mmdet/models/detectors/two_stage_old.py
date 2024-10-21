@@ -1,6 +1,8 @@
+# Copyright (c) OpenMMLab. All rights reserved.
+import warnings
+
 import torch
 import torch.nn as nn
-
 from ..builder import DETECTORS, build_backbone, build_head, build_neck
 from .base import BaseDetector
 
@@ -10,6 +12,14 @@ class Encoder(nn.Module):
         super(Encoder, self).__init__()
 
         self.E = nn.Sequential(
+            # nn.Conv2d(256, 256, kernel_size=3, stride=2, padding=1),
+            # nn.BatchNorm2d(256),
+            # nn.LeakyReLU(0.1, True),
+            # nn.Conv2d(256, 256, kernel_size=3, padding=1),
+            # nn.BatchNorm2d(256),
+            # nn.LeakyReLU(0.1, True),
+            # nn.AdaptiveAvgPool2d(1),
+            ##################################################################
             nn.Conv2d(256, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
             nn.LeakyReLU(0.1, True),
@@ -102,49 +112,46 @@ class Contrastive_Loss(nn.Module):
         # generate localization contrastive loss
         for i in range(scale_size):
             for j in range(batch_size):
-                numerator = 0
-                denominator = 0
+                numerator, denominator = 0., 0.
                 for k in range(scale_size):
                     for l in range(batch_size):
                         if k==i: # positive
-                            numerator += self.cos(localization[i][j], localization_b[k][l])
+                            numerator = numerator + self.cos(localization[i][j], localization_b[k][l])
                             if l==j:continue
-                            else:numerator += self.cos(localization[i][j], localization[k][l])
+                            else:numerator = numerator + self.cos(localization[i][j], localization[k][l])
                         else:  #negative
-                            denominator += self.cos(localization[i][j], localization[k][l])
-                            denominator += self.cos(localization[i][j], localization_b[k][l])
-                denominator += numerator
-                loc_loss += -torch.log(torch.div(torch.div(numerator, denominator),float(batch_size-1.)))
+                            denominator = denominator + self.cos(localization[i][j], localization[k][l])
+                            denominator = denominator + self.cos(localization[i][j], localization_b[k][l])
+                denominator = denominator + numerator
+                loc_loss = loc_loss - torch.log(torch.div(torch.div(numerator, denominator),float(batch_size-1.)))
 
         for i in range(scale_size):
             for j in range(batch_size):
-                numerator = 0
-                denominator = 0
+                numerator, denominator = 0., 0.
                 for k in range(scale_size):
                     for l in range(batch_size):
                         if k==i: # positive
-                            numerator += self.cos(localization_b[i][j], localization[k][l])
+                            numerator = numerator + self.cos(localization_b[i][j], localization[k][l])
                             if l==j:continue
-                            else:numerator += self.cos(localization_b[i][j], localization_b[k][l])
+                            else:numerator = numerator + self.cos(localization_b[i][j], localization_b[k][l])
                         else:  #negative
-                            denominator += self.cos(localization_b[i][j], localization_b[k][l])
-                            denominator += self.cos(localization_b[i][j], localization[k][l])
-                denominator += numerator
-                loc_loss += -torch.log(torch.div(torch.div(numerator, denominator),float(batch_size-1.)))
+                            denominator = denominator + self.cos(localization_b[i][j], localization_b[k][l])
+                            denominator = denominator + self.cos(localization_b[i][j], localization[k][l])
+                denominator = denominator + numerator
+                loc_loss = loc_loss - torch.log(torch.div(torch.div(numerator, denominator),float(batch_size-1.)))
+                
         # generate semantic contrastive loss
         for i in range(scale_size):
             for j in range(batch_size):
-                numerator = 0
-                denominator = 0
+                numerator, denominator = 0., 0.
                 for k in range(scale_size):
                     for l in range(batch_size):
                         if (l==j)and(k!=i) :
-                            numerator += self.cos(semantic[i][j], semantic[k][l])
+                            numerator = numerator + self.cos(semantic[i][j], semantic[k][l])
                         else:
-                            denominator += self.cos(semantic[i][j], semantic[k][l])
-                denominator += numerator
-                sem_loss += -torch.log(torch.div(torch.div(numerator, denominator),3.))
-        # print(loc_loss, sem_loss)
+                            denominator = denominator + self.cos(semantic[i][j], semantic[k][l])
+                denominator = denominator + numerator
+                sem_loss = sem_loss - torch.log(torch.div(torch.div(numerator, denominator),3.))
         return loc_loss, sem_loss
 ##############################################################################
 
@@ -166,7 +173,10 @@ class TwoStageDetector(BaseDetector):
                  pretrained=None,
                  init_cfg=None):
         super(TwoStageDetector, self).__init__(init_cfg)
-        backbone.pretrained = pretrained
+        if pretrained:
+            warnings.warn('DeprecationWarning: pretrained is deprecated, '
+                          'please use "init_cfg" instead')
+            backbone.pretrained = pretrained
         self.backbone = build_backbone(backbone)
 
         if neck is not None:
@@ -186,10 +196,10 @@ class TwoStageDetector(BaseDetector):
             roi_head.update(test_cfg=test_cfg.rcnn)
             roi_head.pretrained = pretrained
             self.roi_head = build_head(roi_head)
-            # print("self.roi_head:",self.roi_head)
 
         self.train_cfg = train_cfg
         self.test_cfg = test_cfg
+
         ########################## add for CL part ##########################
         device = torch.device("cuda")
         self.contrastive_loss = Contrastive_Loss().to(device)
@@ -205,17 +215,23 @@ class TwoStageDetector(BaseDetector):
         """bool: whether the detector has a RoI head"""
         return hasattr(self, 'roi_head') and self.roi_head is not None
 
+
     def extract_feat(self, img):
         """Directly extract features from the backbone+neck."""
         x = self.backbone(img)
+        name = "test"
+        # 可视化resnet产生的特征
+        # from tools.feature_visualization import draw_feature_map
+        # draw_feature_map(x, name=name)
         if self.with_neck:
             x = self.neck(x)
+            # 可视化FPN产生的特征
+            # from tools.feature_visualization import draw_feature_map
+            # draw_feature_map(x, name=name)
         return x
+        # python demo/image.demo.py img_dir config_dir checkpoint_dir --out-file out_image_path_and_name
 
-    # def extract_feat_and_featb(self, img):
-    #     x_b = self.backbone(img)
-    #     x = self.neck(x_b)
-    #     return x_b, x
+
 
     def forward_dummy(self, img):
         """Used for computing network flops.
@@ -272,21 +288,20 @@ class TwoStageDetector(BaseDetector):
         Returns:
             dict[str, Tensor]: a dictionary of loss components
         """
+        x = self.extract_feat(img)
 
         losses = dict()
-
-
+        
         ########################## add for CL part ###################################
         device = torch.device("cuda")
         x_b = self.backbone(img)
         x = self.extract_feat(img)
         loc_loss, sem_loss = self.contrastive_loss(x_b, x)
         # print(sem_loss, loc_loss)
-        losses["loc_cl_loss"] = (loc_loss*0.01).to(device)
+        losses["loc_cl_loss"] = (loc_loss*0.05).to(device)
         losses["sem_cl_loss"] = (sem_loss*0.01).to(device)
-        # print(losses)
+        # print(losses["loc_cl_loss"], losses["sem_cl_loss"])
         ##############################################################################
-
         # RPN forward and loss
         if self.with_rpn:
             proposal_cfg = self.train_cfg.get('rpn_proposal',
@@ -297,7 +312,8 @@ class TwoStageDetector(BaseDetector):
                 gt_bboxes,
                 gt_labels=None,
                 gt_bboxes_ignore=gt_bboxes_ignore,
-                proposal_cfg=proposal_cfg)
+                proposal_cfg=proposal_cfg,
+                **kwargs)
             losses.update(rpn_losses)
         else:
             proposal_list = proposals
@@ -330,10 +346,9 @@ class TwoStageDetector(BaseDetector):
 
     def simple_test(self, img, img_metas, proposals=None, rescale=False):
         """Test without augmentation."""
+
         assert self.with_bbox, 'Bbox head must be implemented.'
         x = self.extract_feat(img)
-        # print(len(x))  # 5
-        # print(x[0].shape)  # torch.Size([1, 256, 200, 200])
         if proposals is None:
             proposal_list = self.rpn_head.simple_test_rpn(x, img_metas)
         else:
@@ -359,4 +374,12 @@ class TwoStageDetector(BaseDetector):
         img_metas[0]['img_shape_for_onnx'] = img_shape
         x = self.extract_feat(img)
         proposals = self.rpn_head.onnx_export(x, img_metas)
-        return self.roi_head.onnx_export(x, proposals, img_metas)
+        if hasattr(self.roi_head, 'onnx_export'):
+            return self.roi_head.onnx_export(x, proposals, img_metas)
+        else:
+            raise NotImplementedError(
+                f'{self.__class__.__name__} can not '
+                f'be exported to ONNX. Please refer to the '
+                f'list of supported models,'
+                f'https://mmdetection.readthedocs.io/en/latest/tutorials/pytorch2onnx.html#list-of-supported-models-exportable-to-onnx'  # noqa E501
+            )

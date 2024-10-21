@@ -362,8 +362,8 @@ class TwoStageDetector(BaseDetector):
         geo_loss, sem_loss = self.contrastive_loss(x_b, x)
 
         # # print(geo_loss, sem_loss)
-        losses["geo_loss"] = (0.1*geo_loss).to(device)
-        losses["sem_loss"] = (0.1*sem_loss).to(device)
+        losses["geo_loss"] = (0.01*geo_loss).to(device)
+        losses["sem_loss"] = (0.01*sem_loss).to(device)
         # print(losses["loc_cl_loss"], losses["sem_cl_loss"])
         # print(losses)
         ########################## add for Reconstruct part ##########################

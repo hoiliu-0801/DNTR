@@ -212,7 +212,7 @@ model = dict(
             max_per_img=3000)))
 
 # optimizer
-optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0001)
+optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0001)
 # learning policy
 lr_config = dict(
     policy='step',
@@ -223,13 +223,12 @@ lr_config = dict(
 checkpoint_config = dict(interval=4)
 runner = dict(type='EpochBasedRunner', max_epochs=48)
 
-evaluation = dict(interval=12, metric='bbox')
+evaluation = dict(interval=48, metric='bbox')
 
 # load_from = None
 # load_from = "/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/pretrain/base_24.pth"
 # load_from = "/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/RS_cl_two_stage/e12_mAP251.pth"
-load_from = "/mnt/data0/Garmin/DNTR/mmdet-dntr/work_dirs/aitod_DNTR_mask_v2_cl/epoch_24.pth"
-
+load_from = None
 # resume_from = "/mnt/data0/Garmin/DNTR/mmdet-dntr/work_dirs/aitod_DNTR_mask_v2/latest.pth"
-resume_from = False
+resume_from = None
 # resume_from = "/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/RS_cl_two_stage/e12_mAP251.pth"
