@@ -23,23 +23,8 @@ This implementation is based on [MMDetection 2.24.1](https://github.com/open-mml
 ```shell script
 git clone https://github.com/hoiliu-0801/DNTR.git
 cd DNTR/mmdet-dntr
-# Install pytorch
-conda install pytorch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0 cudatoolkit=11.0 -c pytorch
-# Required packages
-pip install -r requirements/build.txt
-pip install yapf==0.40.0
-pip install numbda
-pip install timm
-pip install torchprofile
-python setup.py develop
-# Install cocoapi
-pip install pycocotools
-# Install aitodcocoapi
-pip install cython==0.29.36
-pip install "git+https://github.com/jwwangchn/cocoapi-aitod.git#subdirectory=aitodpycocotools"
-#Install mmcv
-#pip install mmcv==2.0.0rc4 -f https://download.openmmlab.com/mmcv/dist/cu110/torch1.7/index.html
-mim install mmcv-full==1.6.0
+# Installation
+sh install.sh
 ```
 
 
@@ -73,6 +58,10 @@ Table 2.  **Training Set:** Visdrone train set, **Validation Set:** Visdrone val
 DNTR | R-50 | 34.4 | 57.9 | 35.3 |
 UFPMP w/o DN-FPN| R-50 | 36.6 | 62.4 | 36.7 |
 UFPMP w/ DN-FPN | R-50 | **37.8** | **62.7** | **38.6** |
+
+## Pretrained Weight of AI-TOD-v2
+https://drive.google.com/drive/folders/1i0mYPQ3Cz_k4iAIvSwecwpWMX_wivxzY
+
 
 ## Note
 If you want to run other baseline method, please replace /mmdet/models/detectors/two_stage.py with mmdet/models/detectors/two_stage.py
