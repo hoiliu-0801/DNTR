@@ -222,7 +222,7 @@ lr_config = dict(
 checkpoint_config = dict(interval=4)
 runner = dict(type='EpochBasedRunner', max_epochs=48)
 
-evaluation = dict(interval=48, metric='bbox')
+# evaluation = dict(interval=48, metric='bbox')
 
 load_from = None
 # load_from = "/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/pretrain/base_24.pth"
