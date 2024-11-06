@@ -22,7 +22,7 @@ IEEE Transactions on Geoscience and Remote Sensing
 | **Section**    | **Details**                                                                                     |
 |----------------|-------------------------------------------------------------------------------------------------|
 | **Paper**      | [Read the Paper](https://arxiv.org/abs/2404.03507)                                           |
-| **Code**       | (https://github.com/hoiliu-0801/DQ-DETR)                                                    |
+| **Code**       | https://github.com/hoiliu-0801/DQ-DETR                                                    |
 | **中文解读**   | [中文解读](https://blog.csdn.net/athrunsunny/article/details/137994172)  
 
 
