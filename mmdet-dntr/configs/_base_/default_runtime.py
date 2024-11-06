@@ -10,8 +10,8 @@ custom_hooks = [dict(type='NumClassCheckHook')]
 
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-#load_from = "/mnt/data0/Garmin/DNTR/mmdet-dntr/work_dirs/pretrain/detectors_htc_r50_1x_coco-329b1453.pth"
-load_from = None
+load_from = "/home/hoiliu/Desktop/DNTR/mmdet-dntr/work_dirs/aitod_CL_mask/epoch_36.pth"
+# load_from = None
 resume_from = None
 # resume_from ='/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/aitodv2_detectors_r50_nwdrka_1x_copy/epoch_6.pth'
 # resume_from = '/mnt/data0/Garmin/nwd-rka/mmdet-nwdrka/work_dirs/pretrain/base_24.pth'

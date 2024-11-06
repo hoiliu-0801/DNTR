@@ -40,8 +40,8 @@ data = dict(
         ),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + 'annotations/aitod_val.json',
-        img_prefix=data_root + 'images/val/',
+        ann_file=data_root + 'annotations/aitod_test_v1_1.0.json',
+        img_prefix=data_root + 'images/test/',
         pipeline=test_pipeline),
     test=dict(
         type=dataset_type,
