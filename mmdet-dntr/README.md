@@ -22,7 +22,7 @@ IEEE Transactions on Geoscience and Remote Sensing
 | **Section**    | **Details**                                                                                     |
 |----------------|-------------------------------------------------------------------------------------------------|
 | **Paper**      | [Read the Paper](https://arxiv.org/abs/2404.03507)                                           |
-| **Code**       | (Include link to the code repository here)                                                    |
+| **Code**       | (https://github.com/hoiliu-0801/DQ-DETR)                                                    |
 | **中文解读**   | [中文解读](https://blog.csdn.net/athrunsunny/article/details/137994172)  
 
 
@@ -64,12 +64,12 @@ python tools/test.py configs/aitod-dntr/aitod_DNTR_mask.py
 
 ## Performance
 Table 1. **Training Set:** AI-TOD trainval set, **Testing Set:** AI-TOD test set, 36 epochs, where FRCN, DR denotes Faster R-CNN and DetectoRS, respectively.
-|Method | Backbone | mAP | AP<sub>50</sub> | AP<sub>75</sub> |AP<sub>vt</sub> | AP<sub>t</sub>  | AP<sub>s</sub>  | AP<sub>m</sub> | AP<sub>m</sub> |
+|Method | Backbone | mAP | AP<sub>50</sub> | AP<sub>75</sub> |AP<sub>vt</sub> | AP<sub>t</sub>  | AP<sub>s</sub>  | AP<sub>m</sub> |
 |:---:|:---:|:---:|:---:|:---:|:---:|:---: |:---: |:---: |
 FRCN | R-50 | 11.1 | 26.3 | 7.6 | 0.0 | 7.2 | 23.3 | 33.6 | 
 ATSS | R-50 | 12.8 | 30.6 | 8.5 | 1.9 | 11.6 | 19.5 | 29.2 | 
 ATSS w/ DN-FPN | R-50 | 17.9 | 41.0 | 12.9 | 3.7 | 16.4 | 25.3 | 35.0 |
-NWD-RKA | R-50 | 23.4 | 53.5 | 16.8 | 8.7 | 23.8 | 28.5 | 36.0 
+NWD-RKA | R-50 | 23.4 | 53.5 | 16.8 | 8.7 | 23.8 | 28.5 | 36.0 |
 DNTR | R-50 | **26.2** | **56.7** | **20.2** | **12.8** | **26.4** | **31.0** | **37.0** | 
 
 Table 2.  **Training Set:** Visdrone train set, **Validation Set:** Visdrone val set, 12 epochs,
@@ -84,10 +84,10 @@ https://drive.google.com/drive/folders/1i0mYPQ3Cz_k4iAIvSwecwpWMX_wivxzY
 
 
 ## Note
-If you want to run other baseline method, please replace /mmdet/models/detectors/two_stage_ori.py with mmdet/models/detectors/two_stage.py
+If you want to run other baseline method with DN-FPN, please replace /mmdet/models/detectors/two_stage_ori.py with mmdet/models/detectors/two_stage.py.
 
 For example: 
-Faster R-CNN: python tools/train.py configs/aitod-dntr/aitod_faster_r50_dntr_1x.py 
+Faster R-CNN: python tools/train.py configs/aitod-dntr/aitod_faster_r50_dntr_1x.py.
 
 ## Citation
 ```bibtex
@@ -101,9 +101,11 @@ Faster R-CNN: python tools/train.py configs/aitod-dntr/aitod_faster_r50_dntr_1x.
   pages={1-15},
 }
 
-@article{huang2024dq,
-  title={Dq-detr: Detr with dynamic query for tiny object detection},
-  author={Huang, Yi-Xin and Liu, Hou-I and Shuai, Hong-Han and Cheng, Wen-Huang},
-  journal={arXiv preprint arXiv:2404.03507},
-  year={2024}
+@InProceedings{huang2024dq,
+author={Huang, Yi-Xin and Liu, Hou-I and Shuai, Hong-Han and Cheng, Wen-Huang},
+title={DQ-DETR: DETR with Dynamic Query for Tiny Object Detection},
+booktitle={European Conference on Computer Vision},
+pages={290--305},
+year={2025},
+organization={Springer}
 }
