@@ -16,18 +16,10 @@ Hou-I Liu and Yu-Wen Tseng and Kai-Cheng Chang and Pin-Jyun Wang and Hong-Han Sh
 IEEE Transactions on Geoscience and Remote Sensing
 [paper] [code]  -->
 
-**Authors:** Yi-Xin Huang, Hou-I Liu*, Hong-Han Shuai, and Wen-Huang Cheng  
-**Conference:** The European Conference on Computer Vision (**ECCV 2024**)
-
-| **Section**    | **Details**                                                                                     |
-|----------------|-------------------------------------------------------------------------------------------------|
-| **Paper**      | [DNTR](https://arxiv.org/abs/2406.05755)                                           |
-| **Code**       | https://github.com/hoiliu-0801/DNTR                                                    |
-| **中文解读**   | [中文解读](https://blog.csdn.net/qq_40734883/article/details/142579516)  
-| **Paper**      | [DQ-DETR](https://arxiv.org/abs/2404.03507)                                           |
-| **Code**       | https://github.com/hoiliu-0801/DQ-DETR                                                    |
-| **中文解读**   | [中文解读](https://blog.csdn.net/athrunsunny/article/details/137994172)  
-
+| Title | Venue | Links | 
+|------|-------------|-------|
+| **DNTR** | TGRS 2024  | [Paper](https://arxiv.org/abs/2406.05755) \| [code](https://github.com/hoiliu-0801/DNTR) \| [中文解读](https://blog.csdn.net/qq_40734883/article/details/142579516) | 
+| **DQ-DETR**| ECCV 2024 | [Paper](https://arxiv.org/abs/2404.03507)  \| [code](https://github.com/hoiliu-0801/DQ-DETR) \| [中文解读](https://blog.csdn.net/csdn_xmj/article/details/142813757) | 
 
 
 ## Installation and Get Started
