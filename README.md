@@ -24,7 +24,6 @@ IEEE Transactions on Geoscience and Remote Sensing
 | **Paper**      | [DNTR](https://arxiv.org/abs/2406.05755)                                           |
 | **Code**       | https://github.com/hoiliu-0801/DNTR                                                    |
 | **中文解读**   | [中文解读](https://blog.csdn.net/qq_40734883/article/details/142579516)  
-|----------------|-------------------------------------------------------------------------------------------------|
 | **Paper**      | [DQ-DETR](https://arxiv.org/abs/2404.03507)                                           |
 | **Code**       | https://github.com/hoiliu-0801/DQ-DETR                                                    |
 | **中文解读**   | [中文解读](https://blog.csdn.net/athrunsunny/article/details/137994172)  
