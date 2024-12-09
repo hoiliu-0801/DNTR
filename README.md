@@ -16,14 +16,10 @@ Hou-I Liu and Yu-Wen Tseng and Kai-Cheng Chang and Pin-Jyun Wang and Hong-Han Sh
 IEEE Transactions on Geoscience and Remote Sensing
 [paper] [code]  -->
 
-**Authors:** Yi-Xin Huang, Hou-I Liu*, Hong-Han Shuai, and Wen-Huang Cheng  
-**Conference:** The European Conference on Computer Vision (**ECCV 2024**)
-
-| **Section**    | **Details**                                                                                     |
-|----------------|-------------------------------------------------------------------------------------------------|
-| **Paper**      | [Read the Paper](https://arxiv.org/abs/2404.03507)                                           |
-| **Code**       | https://github.com/hoiliu-0801/DQ-DETR                                                    |
-| **中文解读**   | [中文解读](https://blog.csdn.net/athrunsunny/article/details/137994172)  
+| Title | Venue | Links | 
+|------|-------------|-------|
+| **DNTR** | TGRS 2024  | [Paper](https://arxiv.org/abs/2406.05755) \| [code](https://github.com/hoiliu-0801/DNTR) \| [中文解读](https://blog.csdn.net/qq_40734883/article/details/142579516) | 
+| **DQ-DETR**| ECCV 2024 | [Paper](https://arxiv.org/abs/2404.03507)  \| [code](https://github.com/hoiliu-0801/DQ-DETR) \| [中文解读](https://blog.csdn.net/csdn_xmj/article/details/142813757) | 
 
 
 ## Installation and Get Started
@@ -70,7 +66,8 @@ FRCN | R-50 | 11.1 | 26.3 | 7.6 | 0.0 | 7.2 | 23.3 | 33.6 |
 ATSS | R-50 | 12.8 | 30.6 | 8.5 | 1.9 | 11.6 | 19.5 | 29.2 | 
 ATSS w/ DN-FPN | R-50 | 17.9 | 41.0 | 12.9 | 3.7 | 16.4 | 25.3 | 35.0 |
 NWD-RKA | R-50 | 23.4 | 53.5 | 16.8 | 8.7 | 23.8 | 28.5 | 36.0 |
-DNTR | R-50 | **26.2** | **56.7** | **20.2** | **12.8** | **26.4** | **31.0** | **37.0** | 
+DNTR | R-50 | 26.2 | **56.7** | 20.2 | 12.8 | 26.4 | 31.0 | 37.0 | 
+DNTR (New) | R-50 | **27.2** | 56.3 | **21.8** | **15.2** | **27.4** | **31.9** | **38.5** |
 
 Table 2.  **Training Set:** Visdrone train set, **Validation Set:** Visdrone val set, 12 epochs,
 |Method | Backbone |AP| AP<sub>50</sub> | AP<sub>75</sub> |
@@ -79,7 +76,7 @@ DNTR | R-50 | 34.4 | 57.9 | 35.3 |
 UFPMP w/o DN-FPN| R-50 | 36.6 | 62.4 | 36.7 |
 UFPMP w/ DN-FPN | R-50 | **37.8** | **62.7** | **38.6** |
 
-## Pretrained Weight of AI-TOD-v2, the improved weights will be released soon.
+## Pretrained Weights of AI-TOD-v1 and AI-TOD-v2 .
 https://drive.google.com/drive/folders/1i0mYPQ3Cz_k4iAIvSwecwpWMX_wivxzY
 
 
