@@ -6,7 +6,8 @@
 A PyTorch implementation and pretrained models for DNTR (DeNoising Transformer R-CNN). We present DN-FPN, a plug-in that suppresses noise generated during the fusion of FPNs. In addition, we renalvate the standard R-CNN to consist of a transformer structure, namely Trans R-CNN.(base)
 
 ## News
-[2024/7/1]: **DQ-DETR** has been accepted by ECCV 2024. 🔥🔥🔥\\
+[2024/7/1]: **DQ-DETR** has been accepted by ECCV 2024. 🔥🔥🔥
+
 [2024/5/3]: **DNTR** has been accepted by TGRS 2024. 🔥🔥🔥
 
 
