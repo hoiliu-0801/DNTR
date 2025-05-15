@@ -6,7 +6,7 @@
 A PyTorch implementation and pretrained models for DNTR (DeNoising Transformer R-CNN). We present DN-FPN, a plug-in that suppresses noise generated during the fusion of FPNs. In addition, we renalvate the standard R-CNN to consist of a transformer structure, namely Trans R-CNN.(base)
 
 ## News
-[2024/7/1]: **DQ-DETR** has been accepted by ECCV 2024. 🔥🔥🔥
+[2024/7/1]: **DQ-DETR** has been accepted by ECCV 2024. 🔥🔥🔥\\
 [2024/5/3]: **DNTR** has been accepted by TGRS 2024. 🔥🔥🔥
 
 
@@ -76,7 +76,14 @@ DNTR | R-50 | 34.4 | 57.9 | 35.3 |
 UFPMP w/o DN-FPN| R-50 | 36.6 | 62.4 | 36.7 |
 UFPMP w/ DN-FPN | R-50 | **37.8** | **62.7** | **38.6** |
 
-## Pretrained Weights of AI-TOD-v1 and AI-TOD-v2 .
+## AI-TOD-v1 and AI-TOD-v2 Datasets (Don’t forget to leave us a ⭐)
+* Step 1: Download the datasets from the below link.
+```sh
+https://drive.google.com/drive/folders/1CowS5BrujefWQxxlmOFfUuLOfUUm8w6U?usp=sharing
+```
+
+
+## Pretrained Weights of AI-TOD-v1 and AI-TOD-v2. 
 https://drive.google.com/drive/folders/1i0mYPQ3Cz_k4iAIvSwecwpWMX_wivxzY
 
 
