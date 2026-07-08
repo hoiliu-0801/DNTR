@@ -85,7 +85,9 @@ https://drive.google.com/drive/folders/1anByR3zA85O_1ygZYYJgjbiI7mqcYRhU
 
 
 ## Pretrained Weights of AI-TOD-v1 and AI-TOD-v2. 
-https://drive.google.com/drive/folders/1i0mYPQ3Cz_k4iAIvSwecwpWMX_wivxzY
+```sh
+https://drive.google.com/drive/folders/1anByR3zA85O_1ygZYYJgjbiI7mqcYRhU
+```
 
 
 ## Note
