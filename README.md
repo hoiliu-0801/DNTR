@@ -80,7 +80,7 @@ UFPMP w/ DN-FPN | R-50 | **37.8** | **62.7** | **38.6** |
 ## AI-TOD-v1 and AI-TOD-v2 Datasets (Don’t forget to leave us a ⭐)
 * Step 1: Download the datasets from the below link.
 ```sh
-https://drive.google.com/drive/folders/1CowS5BrujefWQxxlmOFfUuLOfUUm8w6U?usp=sharing
+https://drive.google.com/drive/folders/1anByR3zA85O_1ygZYYJgjbiI7mqcYRhU?usp=sharing
 ```
 
 
